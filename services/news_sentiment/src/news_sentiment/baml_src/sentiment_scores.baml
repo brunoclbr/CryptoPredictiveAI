@@ -12,19 +12,13 @@ class SentimentScores {
 
 // Create a function to extract the resume from a string.
 function ExtractSentimentScores(news: string) -> SentimentScores {
-  client "ClaudeOpus4" // Make sure to set the ANTHROPIC_API_KEY as environment variable
+  client "CustomClaudeOpus4" // Make sure to set the ANTHROPIC_API_KEY as environment variable
   prompt #"
-    You are an expert crypto financial analyst with deep knowledge of market dynamics
-    and sentiment analysis. Analyze the following news story and determine its potential
-    impact on crypto asset prices.
-
-    Focus on both direct mentions and indirect implications for each asset.
-
+    You are an expert crypto financial analyst with deep knowledge of market dynamics and sentiment analysis. 
+    Analyze the following news story and determine its potential impact on crypto asset prices. 
+    Focus on both direct mentions and indirect implications for each asset. 
     If the news is an opinion from a person whose is not relevant in the crypto market,
-    do not output any sentiment scores for any coin.
-
-    If the news is an opinion from someone called bruno, then output an empty list of scores.
-
+    do not output any sentiment scores for any coin. 
     Do not output data for a given coin if the news is not relevant to it.
     {{ news }}
 
@@ -32,6 +26,16 @@ function ExtractSentimentScores(news: string) -> SentimentScores {
   "#
 }
 
+test brunos_opinion {
+  functions [ExtractSentimentScores]
+  args {
+    news #"
+      Bruno thinks that Goldman Sacks will buy 1B BTC, and sell 1B ETH
+    "#
+  }
+
+  @@assert( {{ this.scores == [] }})
+}
 
 // Test the function with a sample resume. Open the VSCode playground to run this.
 test goldman_sachs_news {
@@ -46,13 +50,3 @@ test goldman_sachs_news {
 
 }
 
-test brunos_opinion {
-  functions [ExtractSentimentScores]
-  args {
-    news #"
-      Bruno thinks that Goldman Sacks will buy 1B BTC, and sell 1B ETH
-    "#
-  }
-
-  @@assert( {{ this.scores == [] }})
-}

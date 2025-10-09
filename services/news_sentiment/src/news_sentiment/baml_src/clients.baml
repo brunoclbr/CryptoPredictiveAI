@@ -9,11 +9,12 @@ client<llm> CustomGPT4oMini {
   }
 }
 
-client<llm> ClaudeOpus4 {
+
+client<llm> CustomClaudeOpus4 {
   provider anthropic
   options {
-    model "claude-opus-4-20250514"
-    api_key env.ANTHROPIC_API_KEY
+    model "claude-opus-4-1-20250805"
+    api_key env.ANTHROPIC_API_KEY 
   }
 }
 
