@@ -49,7 +49,7 @@ def run(
         # TODO: Try both the `title` and the `description` fields of the
         # news_item dictionary. Trade-off between more tokens more cost,
         # maybe just the title of the news is good enough already
-        news: str = news_item['title']  # + ' ' + news_item.get('description', '')
+        news: str = news_item['description']  # + ' ' + news_item.get('description', '')
 
         # use the LLM based sentiment extractor to map the news string to SentimentScores
         output = sentiment_extractor.extract_sentiment_scores(news)
@@ -63,7 +63,7 @@ def run(
             }
             for score in output.scores
         ]
-
+        print(f'##################### \n THIS ARE THE SCORES: {sentiment_scores}')
         return sentiment_scores
 
     sdf = sdf.apply(get_sentiment_scores, expand=True)

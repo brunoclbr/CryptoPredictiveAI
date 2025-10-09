@@ -30,6 +30,7 @@ class SentimentExtractor:
         cr = ClientRegistry()
 
         if model_provider == 'anthropic':
+            print(os.environ.get('ANTHROPIC_API_KEY'))
             cr.add_llm_client(
                 name='MyDynamicClient',
                 provider='anthropic',
@@ -70,7 +71,7 @@ class SentimentExtractor:
 
 
 if __name__ == '__main__':
-    sentiment_extractor = SentimentExtractor(model='anthropic/ClaudeOpus4')
+    sentiment_extractor = SentimentExtractor(model='anthropic/CustomClaudeOpus4')
     print(
         sentiment_extractor.extract_sentiment_scores(
             'Goldman Sachs is about to buy 1B in Bitcoin, and sell 1B in Ethereum.'
