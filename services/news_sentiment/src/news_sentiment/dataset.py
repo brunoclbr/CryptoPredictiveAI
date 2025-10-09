@@ -36,6 +36,18 @@ def generate(
         # load the news from the given CSV file
         logger.info(f'Loading news from {input_csv_file}')
         news: list[str] = load_news_from_csv(input_csv_file, samples)
+
+        # Filter out incomplete news items (headlines without content)
+        original_count = len(news)
+        news = [
+            item
+            for item in news
+            if len(item.strip()) > 50 and not item.strip().endswith('...')
+        ]
+        filtered_count = original_count - len(news)
+        if filtered_count > 0:
+            logger.info(f'Filtered out {filtered_count} incomplete news items')
+
         logger.info(f'Loaded {len(news)} news')
     else:
         logger.info(f'Loading single news item: {input_news}')
@@ -49,9 +61,15 @@ def generate(
     dataset = client.get_or_create_dataset(name=dataset_name)
 
     for news_item in tqdm(news):
-        output: SentimentScores = sentiment_extractor.extract_sentiment_scores(
-            news_item
-        )
+        try:
+            output: SentimentScores = sentiment_extractor.extract_sentiment_scores(
+                news_item
+            )
+        except Exception as e:
+            print(f'Error processing news item: {news_item[:100]}...')
+            print(f'Error: {e}')
+            # Skip this item and continue
+            continue
 
         # extract the scores from the output as a list of dicts
         output_scores = [

@@ -18,9 +18,12 @@ function ExtractSentimentScores(news: string) -> SentimentScores {
     Analyze the following news story and determine its potential impact on crypto asset prices. 
     Focus on both direct mentions and indirect implications for each asset. 
     If the news is an opinion from a person whose is not relevant in the crypto market,
-    do not output any sentiment scores for any coin. 
-    Do not output data for a given coin if the news is not relevant to it.
-    {{ news }}
+    do not output any sentiment scores for any coin. Do not output data for a given coin if the news is not relevant to it.
+    MAKE SURE TO CORRECTLY IDENTIFY WETHER THE NEWS IS FROM A PERSON WHO IS RELEVANT IN THE CRYPTO MARKET OR NOT.
+    
+    IMPORTANT: You must ALWAYS respond with valid JSON in the exact format specified below, even if the news is incomplete or unclear. If you cannot determine sentiment, return an empty scores array with a reason explaining why.
+    
+    News: {{ news }}
 
     {{ ctx.output_format }}
   "#
