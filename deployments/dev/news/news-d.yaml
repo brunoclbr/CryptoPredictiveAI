@@ -36,3 +36,8 @@ spec:
             configMapKeyRef:
               name: news-extractor
               key: KAFKA_OUTPUT_TOPIC
+        - name: POOLING_INTERVAL_SEC
+          valueFrom:
+            configMapKeyRef:
+              name: news-extractor
+              key: POOLING_INTERVAL_SEC

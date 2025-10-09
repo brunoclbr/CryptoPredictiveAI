@@ -5,7 +5,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: training-pipeline-aed2
+  name: training-pipeline-weekly
   namespace: training-pipeline
 spec:
   # For debugginb you might want to run the job more often:
