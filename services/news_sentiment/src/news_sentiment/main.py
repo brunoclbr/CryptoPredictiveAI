@@ -84,7 +84,7 @@ if __name__ == '__main__':
     # these are set with env variables and the rest through the config file
 
     sentiment_extractor = SentimentExtractor(
-        model=config.model,
+        model=config.oss_model,
         base_url=config.base_url,
     )
 
