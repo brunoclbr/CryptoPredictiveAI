@@ -13,8 +13,19 @@ client<llm> CustomGPT4oMini {
 client<llm> CustomClaudeOpus4 {
   provider anthropic
   options {
-    model "claude-opus-4-1-20250805"
+    model "claude-opus-4-20250514"
     api_key env.ANTHROPIC_API_KEY 
+  }
+}
+
+
+client<llm> CustomLLama318b {
+  provider "openai-generic"
+  options {
+    base_url "http://localhost:11434/v1"
+    model "llama3.1:8b"
+    max_tokens 1000
+    temperature 0.7
   }
 }
 

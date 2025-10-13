@@ -21,10 +21,10 @@ curate-dataset:
 evaluate:
 	uv run src/news_sentiment/evaluate.py \
     --dataset_name news-sentiment-dataset-live \
-    --model $(MODEL)
+    --model $(CSS_MODEL)
 
 evaluate-tricky-example:
 	uv run src/news_sentiment/evaluate.py \
     --dataset_name news-sentiment-dataset-live \
-    --model $(MODEL) \
-    --dataset_item_id 01973aa3-7594-7d37-8a12-0962cc06b298
+    --model $(OSS_MODEL) \
+    --dataset_item_id 0199c913-766e-7d03-9e5c-41bb88e0ec45

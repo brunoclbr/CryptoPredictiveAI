@@ -12,18 +12,23 @@ class SentimentScores {
 
 // Create a function to extract the resume from a string.
 function ExtractSentimentScores(news: string) -> SentimentScores {
-  client "CustomClaudeOpus4" // Make sure to set the ANTHROPIC_API_KEY as environment variable
+  client "CustomLLama318b" 
   prompt #"
-    You are an expert crypto financial analyst with deep knowledge of market dynamics and sentiment analysis. 
-    Analyze the following news story and determine its potential impact on crypto asset prices. 
-    Focus on both direct mentions and indirect implications for each asset. 
+
+    {{ _.role("user") }}
+    You are an expert crypto financial analyst with deep knowledge of market dynamics
+    and sentiment analysis. Analyze the following news story and determine its potential
+    impact on crypto asset prices.
+
+    Focus on both direct mentions and indirect implications for each asset.
+
     If the news is an opinion from a person whose is not relevant in the crypto market,
-    do not output any sentiment scores for any coin. Do not output data for a given coin if the news is not relevant to it.
-    MAKE SURE TO CORRECTLY IDENTIFY WETHER THE NEWS IS FROM A PERSON WHO IS RELEVANT IN THE CRYPTO MARKET OR NOT.
-    
-    IMPORTANT: You must ALWAYS respond with valid JSON in the exact format specified below, even if the news is incomplete or unclear. If you cannot determine sentiment, return an empty scores array with a reason explaining why.
-    
-    News: {{ news }}
+    do not output any sentiment scores for any coin.
+
+    If the news is an opinion from natural persons not relevant in the crypto market, then output an empty list of scores.
+
+    Do not output data for a given coin if the news is not relevant to it.
+    {{ news }}
 
     {{ ctx.output_format }}
   "#
