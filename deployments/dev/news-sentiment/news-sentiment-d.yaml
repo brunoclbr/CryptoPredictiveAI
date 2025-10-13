@@ -41,13 +41,33 @@ spec:
             configMapKeyRef:
               name: news-sentiment
               key: KAFKA_CONSUMER_GROUP
-        - name: MODEL
+        - name: OSS_MODEL
           valueFrom:
             configMapKeyRef:
               name: news-sentiment
-              key: MODEL
+              key: OSS_MODEL
         - name: BASE_URL
           valueFrom:
             configMapKeyRef:
               name: news-sentiment
               key: BASE_URL
+        - name: OPIK_API_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: news-sentiment
+              key: OPIK_API_KEY
+        - name: OPIK_URL_OVERRIDE
+          valueFrom:
+            configMapKeyRef:
+              name: news-sentiment
+              key: OPIK_URL_OVERRIDE
+        - name: OPIK_PROJECT_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: news-sentiment
+              key: OPIK_PROJECT_NAME
+        - name: OPIK_WORKSPACE
+          valueFrom:
+            configMapKeyRef:
+              name: news-sentiment
+              key: OPIK_WORKSPACE

@@ -9,7 +9,7 @@ class Settings(BaseSettings):
     kafka_output_topic: str
     kafka_consumer_group: str
 
-    # LLM model to use, and optionally the base URL of the LLM server.
+    # LLM model to use, and optionally the base URL of the LLM server. From now on we work only with oss models
     oss_model: str
     base_url: Optional[str] = None
 

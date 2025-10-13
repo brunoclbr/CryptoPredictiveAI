@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR /app
 
 # Copy the application source
-COPY services/trades/ .
+COPY services/news_sentiment/ .
 
 # Install dependencies using uv
 RUN --mount=type=cache,target=/root/.cache/uv \
@@ -53,4 +53,4 @@ RUN useradd -m -u 1000 appuser && \
 USER appuser
 
 # Use exec form for ENTRYPOINT to avoid shell requirement
-ENTRYPOINT ["python", "/app/src/trades/news_sentiment.py"]
+ENTRYPOINT ["python", "/app/src/news_sentiment/main.py"]
